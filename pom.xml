@@ -80,5 +80,6 @@
 
 	<modules>
 		<module>01PrepareStatement</module>
+		<module>02DataVisualizationWithPlots</module>
 	</modules>
 </project>
