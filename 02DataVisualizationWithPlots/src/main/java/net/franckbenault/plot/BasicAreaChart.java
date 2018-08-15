@@ -5,10 +5,10 @@ import javafx.stage.Stage;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.ScatterChart;
+import javafx.scene.chart.AreaChart;
 import javafx.scene.Scene;
 
-public class BasicScatterChart extends Application {
+public class BasicAreaChart extends Application {
 
 	public static void main(String args[]) {
 		launch(args);
@@ -29,7 +29,7 @@ public class BasicScatterChart extends Application {
 		NumberAxis yAxis = new NumberAxis();
 		yAxis.setLabel("y");
 		
-		ScatterChart<Integer,Double> chart = new ScatterChart(xAxis,yAxis);
+		AreaChart<Integer,Double> chart = new AreaChart(xAxis,yAxis);
 		chart.getData().add(series);
 		
 		Scene scene = new Scene(chart, 800, 600);
