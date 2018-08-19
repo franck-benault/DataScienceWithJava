@@ -24,8 +24,8 @@ public class RealVectorExample {
 		System.out.println(vector);
 		
 		//constructor with another vector
-		RealVector vector2 = new ArrayRealVector(vector);
-		System.out.println(vector2);
+		RealVector anotherVector = new ArrayRealVector(vector);
+		System.out.println(anotherVector);
 
 	}
 
