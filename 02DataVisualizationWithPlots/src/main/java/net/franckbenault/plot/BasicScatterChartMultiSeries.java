@@ -1,12 +1,19 @@
 package net.franckbenault.plot;
 
+import java.io.File;
+
+import javax.imageio.ImageIO;
+
 import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.scene.chart.XYChart.Series;
-import javafx.scene.chart.XYChart.Data;
+import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.ScatterChart;
-import javafx.scene.Scene;
+import javafx.scene.chart.XYChart.Data;
+import javafx.scene.chart.XYChart.Series;
+import javafx.scene.image.WritableImage;
+import javafx.stage.Stage;
+import javafx.embed.swing.SwingFXUtils;
 
 public class BasicScatterChartMultiSeries extends Application {
 
@@ -44,11 +51,16 @@ public class BasicScatterChartMultiSeries extends Application {
 		
 		ScatterChart<Integer,Double> chart = new ScatterChart(xAxis,yAxis);
 		chart.getData().addAll(series1,series2, series3);
+		chart.setAnimated(false);
 		
 		Scene scene = new Scene(chart, 800, 600);
 		stage.setScene(scene);
 		
+		
 		stage.show();
+		WritableImage image = chart.snapshot(new SnapshotParameters(), null);
+		File file = new File("chart.png");
+		ImageIO.write(SwingFXUtils.fromFXImage(image, null),"png", file);
 	}
 
 }
