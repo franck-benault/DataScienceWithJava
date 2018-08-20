@@ -9,15 +9,15 @@ public class BlockRealMatrixExample {
 		
 		
 		//constructor with row and col size
-		int rowDimension = 50;
-		int colDimension = 60;
+		int rowDimension = 9_950;
+		int colDimension = 9_950;
 		//blockRealMatrix for big size matrix management
 		RealMatrix matrix = new BlockRealMatrix(rowDimension, colDimension);
-		//add default value
-		matrix = matrix.scalarAdd(2.3);
-	
 		
-
+		matrix.setEntry(1, 2, 7.0);
+		double norm = matrix.getNorm();
+		System.out.println("norm ="+norm);
+		
 
 	}
 
