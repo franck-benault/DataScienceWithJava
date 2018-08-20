@@ -9,7 +9,7 @@ public class RealMatrixExample {
 		
 		
 		//constructor with row and col size
-		int rowDimension =2;
+		int rowDimension = 2;
 		int colDimension = 3;
 		RealMatrix matrix = new Array2DRowRealMatrix(rowDimension, colDimension);
 		System.out.println(matrix);
