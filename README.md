@@ -17,3 +17,18 @@ https://www.baeldung.com/apache-commons-csv
 *Last version*
 1.11.0 03/03/2024
 https://mvnrepository.com/artifact/org.apache.commons/commons-csv/1.11.0
+
+## Working with vector and matrix
+
+Web site
+https://commons.apache.org/proper/commons-math/
+
+
+Last versions
+commons-math3 version 3.6.1 (17/03/2018)
+https://mvnrepository.com/artifact/org.apache.commons/commons-math3/3.6.1
+
+
+commons-math4 version 4.0-beta1 (19/12/2022)
+https://mvnrepository.com/artifact/org.apache.commons/commons-math4-legacy-core/4.0-beta1
+
