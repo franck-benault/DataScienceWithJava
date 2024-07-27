@@ -27,3 +27,6 @@ Part01ReadCSV/.settings/
 Part01ReadCSV/.project
 *.classpath
 Part01ReadCSV/.gitignore
+Part02ReadJSON/.gitignore
+*.project
+Part02ReadJSON/.settings/
