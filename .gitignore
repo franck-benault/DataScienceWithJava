@@ -30,3 +30,5 @@ Part01ReadCSV/.gitignore
 Part02ReadJSON/.gitignore
 *.project
 Part02ReadJSON/.settings/
+Part03VectorMatrix/.gitignore
+Part03VectorMatrix/.settings/
