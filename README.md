@@ -23,6 +23,17 @@ https://mvnrepository.com/artifact/org.apache.commons/commons-csv/1.11.0
 
 ## Draw diagram
 
+JfreeChart
+web site https://www.jfree.org/jfreechart/
+
+Baeldung 
+https://www.baeldung.com/jfreechart-visualize-data
+
+
+Last version 1.5.5 23/06/2024
+https://mvnrepository.com/artifact/org.jfree/jfreechart/1.5.5
+
+
 ## Working with vector and matrix
 
 Web site
