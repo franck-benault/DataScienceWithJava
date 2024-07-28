@@ -23,12 +23,9 @@
 hs_err_pid*
 replay_pid*
 .metadata/
-Part01ReadCSV/.settings/
-Part01ReadCSV/.project
+*/.settings/
+*/.project
 *.classpath
-Part01ReadCSV/.gitignore
-Part02ReadJSON/.gitignore
+*/.gitignore
 *.project
-Part02ReadJSON/.settings/
-Part03VectorMatrix/.gitignore
-Part03VectorMatrix/.settings/
+

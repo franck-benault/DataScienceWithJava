@@ -5,7 +5,8 @@ Python is the language for datascience but may be it is possible to do datascien
 
 The quite old book "Data Science with Java" writen by Michael R Brzustowics is still a reference.
 
-## Read a CVS file
+## Read a CVS files
+
 There is no issue to use the Apache lib apache-common-cvs
 
 *Web site*
@@ -17,6 +18,10 @@ https://www.baeldung.com/apache-commons-csv
 *Last version*
 1.11.0 03/03/2024
 https://mvnrepository.com/artifact/org.apache.commons/commons-csv/1.11.0
+
+## Read a JSON files
+
+## Draw diagram
 
 ## Working with vector and matrix
 
