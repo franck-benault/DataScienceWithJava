@@ -66,5 +66,20 @@ public class Test01Vectors {
 		assertEquals(vector1, vector2);
 		
 	}
+	
+	@Test
+	public void accessingValue04Test() {
+		RealVector vector1 = new ArrayRealVector(4);
+		
+		//set all value to 5
+		vector1.set(5.0);
+		vector1.setEntry(3, 7.1);
+		
+		System.out.println(vector1);
+		
+		assertEquals(vector1.getEntry(2), 5);
+		assertEquals(vector1.getEntry(3), 7.1);
+		
+	}
 
 }
