@@ -80,6 +80,9 @@ public class Test01Vectors {
 		assertEquals(vector1.getEntry(2), 5);
 		assertEquals(vector1.getEntry(3), 7.1);
 		
+		//go back to tab[] with toArray()
+		assertEquals(vector1.toArray()[1],5.0);
+		
 	}
 
 }
