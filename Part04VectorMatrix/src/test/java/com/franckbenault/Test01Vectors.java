@@ -84,5 +84,29 @@ public class Test01Vectors {
 		assertEquals(vector1.toArray()[1],5.0);
 		
 	}
+	
+	@Test
+	public void operationScaling05Test() {
+		//V2= kV1 k is a number
+		RealVector vector1 = new ArrayRealVector(4);
+		
+		//set all value to 5
+		vector1.set(1.0);
+		vector1.setEntry(3, 2.1);
+		System.out.println(vector1);
+		
+		vector1=vector1.mapMultiply(2);
+		System.out.println(vector1);
+		
+		vector1.mapMultiplyToSelf(2);
+		System.out.println(vector1);
+		
+		vector1=vector1.mapDivide(2);
+		System.out.println(vector1);
+		
+		vector1.mapDivideToSelf(2);
+		System.out.println(vector1);
+		
+	}
 
 }
