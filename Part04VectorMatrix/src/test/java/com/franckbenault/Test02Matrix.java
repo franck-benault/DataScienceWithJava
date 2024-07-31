@@ -70,4 +70,24 @@ public class Test02Matrix {
 		
 
 	}
+	
+	@Test
+	public void accessingValue04Test() {
+
+		int rowDimension =3;
+		int colDimension =4;
+		RealMatrix matrix1 = new Array2DRowRealMatrix(rowDimension, colDimension);
+		
+		//set all value to 5
+		matrix1.setEntry(1,2, 7.1);
+		
+		System.out.println(matrix1);
+		
+		assertEquals(matrix1.getEntry(1,2), 7.1);
+		assertEquals(matrix1.getEntry(2,3), 0.0);
+		
+		//go back to tab[] with toArray()
+		assertEquals(matrix1.getData()[1][2],7.1);
+		
+	}
 }
