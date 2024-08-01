@@ -90,4 +90,35 @@ public class Test02Matrix {
 		assertEquals(matrix1.getData()[1][2],7.1);
 		
 	}
+	
+	@Test
+	public void operationScaling05Test() {
+		//M2= kM1 k is a number
+		int rowDimension =3;
+		int colDimension =4;
+		RealMatrix matrix1 = new Array2DRowRealMatrix(rowDimension, colDimension);
+		
+		//set all value to 5
+		matrix1.setEntry(1,2, 7.1);	
+		System.out.println(matrix1);
+		
+		RealMatrix matrix2 = matrix1.scalarMultiply(2);
+		System.out.println(matrix2);
+	}
+	
+	@Test
+	public void transporse06Test() {
+		//M2= kM1 k is a number
+		int rowDimension =3;
+		int colDimension =4;
+		RealMatrix matrix1 = new Array2DRowRealMatrix(rowDimension, colDimension);
+		
+		//set all value to 5
+		matrix1.setEntry(1,2, 7.1);	
+		System.out.println(matrix1);
+		
+		RealMatrix matrix2 = matrix1.transpose();
+		System.out.println(matrix2);
+	}
 }
+
