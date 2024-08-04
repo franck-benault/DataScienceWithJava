@@ -51,3 +51,11 @@ https://mvnrepository.com/artifact/org.apache.commons/commons-math3/3.6.1
 commons-math4 version 4.0-beta1 (19/12/2022)
 https://mvnrepository.com/artifact/org.apache.commons/commons-math4-legacy-core/4.0-beta1
 
+## Shapley Value
+
+Examplanation
+https://medium.com/the-modern-scientist/what-is-the-shapley-value-8ca624274d5a
+
+
+
+
