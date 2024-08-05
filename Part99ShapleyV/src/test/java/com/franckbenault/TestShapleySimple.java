@@ -136,6 +136,49 @@ public class TestShapleySimple {
 		
 		
 		@Test
+		public void axiomLinearityTest() {
+			
+			Set<String> n = new HashSet<>(Arrays.asList("One", "Two", "Three"));
+			
+			
+			Function<Set<String>, Double> v1=  s -> {
+		        if(s.isEmpty())
+		        	return 0.0;
+		        else if(s.size()==1 && s.contains("One")) {
+		        	return 10.0;
+		        } else if(s.size()==1 && !s.contains("One")) {
+		        	return 15.0;
+		        } else if(s.size()==2) {
+		        	return 45.0;
+		        } else
+		        	return 100.0;
+		    };
+		    
+			Function<Set<String>, Double> v2=  s -> {
+		        if(s.isEmpty())
+		        	return 0.0;
+		        else if(s.size()==1 && s.contains("One"))
+		        	return 5.0;
+		        else if(s.size()==1 && !s.contains("One"))
+		        	return 16.0;
+	        	else if(s.size()==2) 
+	        		return 35.0;
+		        else
+		        	return 100.0;
+		    };
+		    
+		    Function<Set<String>, Double> v12=  s -> v1.apply(s)+v2.apply(s);
+		    
+		    ShapleySimple shapley1 = new ShapleySimple(v1,n);
+		    ShapleySimple shapley2 = new ShapleySimple(v2,n);
+		    ShapleySimple shapley12 = new ShapleySimple(v12,n);
+			assertEquals(shapley1.calculate("One")+shapley2.calculate("One"), shapley12.calculate("One"));
+			assertEquals(shapley1.calculate("Two")+shapley2.calculate("Two"), shapley12.calculate("Two"));
+			assertEquals(shapley1.calculate("Three")+shapley2.calculate("Three"), shapley12.calculate("Three"));
+		}
+		
+		
+		@Test
 		public void axiomDummyPlayerTest() {
 			
 			Set<String> n = new HashSet<>(Arrays.asList("OneDoNothing", "Two","Three","Four"));
