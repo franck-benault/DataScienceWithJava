@@ -276,5 +276,86 @@ public class TestShapleySimple {
 			assertEquals(shapley.calculate("P3"),4.0/6);
 		}
 	}
+	
+	@Nested
+	public class ParlementTests {
+
+		@Test
+		public void example1Test() {
+			Set<String> n = new HashSet<>(Arrays.asList(
+					"P1", "P2","P3"));
+			
+			Function<String, Integer> nbMPF=  s -> {
+				if(s.equals("P1"))
+					return 49;
+				if(s.equals("P2"))
+					return 4;				
+				if(s.equals("P3"))
+					return 48;	
+				return 0;
+			};
+					
+			Function<Set<String>, Double> v=  s -> {
+				int nbMP=0;
+				for(String p : s) {
+					nbMP+=nbMPF.apply(p);
+				}
+				if(nbMP>50)
+					return 1.0;
+				else
+					return 0.0;
+		    };
+			
+			
+		    ShapleySimple shapley = new ShapleySimple(v,n);
+			assertEquals(shapley.calculate("P1"),1.0/3);
+			assertEquals(shapley.calculate("P2"),1.0/3);
+			assertEquals(shapley.calculate("P3"),1.0/3);
+			
+		}
+		
+		@Test
+		public void example2Test() {
+			Set<String> n = new HashSet<>(Arrays.asList(
+					"P1", "P2","P3","P4","P5","P6"));
+			
+			Function<String, Integer> nbMPF=  s -> {
+				if(s.equals("P1"))
+					return 33;
+				if(s.equals("P2"))
+					return 30;				
+				if(s.equals("P3"))
+					return 16;	
+				if(s.equals("P4"))
+					return 13;		
+				if(s.equals("P5"))
+					return 6;	
+				if(s.equals("P6"))
+					return 3;	
+				return 0;
+			};
+					
+			Function<Set<String>, Double> v=  s -> {
+				int nbMP=0;
+				for(String p : s) {
+					nbMP+=nbMPF.apply(p);
+				}
+				if(nbMP>50)
+					return 1.0;
+				else
+					return 0.0;
+		    };
+			
+			
+		    ShapleySimple shapley = new ShapleySimple(v,n);
+		    shapley.calculateAll();
+			System.out.println(shapley.calculate("P1"));
+			System.out.println(shapley.calculate("P2"));
+			System.out.println(shapley.calculate("P3"));
+			System.out.println(shapley.calculate("P4"));
+			System.out.println(shapley.calculate("P5"));
+			System.out.println(shapley.calculate("P6"));
+		}
+	}
 
 }

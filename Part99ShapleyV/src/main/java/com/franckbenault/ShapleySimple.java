@@ -28,11 +28,13 @@ public class ShapleySimple {
 		}
 		
 		
-		System.out.println("powerSet "+powerSet);
+		//System.out.println("powerSet "+powerSet);
 		System.out.println("calculate all res "+res);
 	}
 	
 	public Double calculate(String i) {
+		if(res.containsKey(i))
+			return res.get(i);
 		System.out.println("calculate for i "+i);
 		double temp=0.0;
 		for(Set<String> s : powerSet) {
