@@ -206,5 +206,75 @@ public class TestShapleySimple {
 		
 		
 	}
+	
+	@Nested
+	public class MediumOCTests {
+		//O Caelen
+		//example coming from https://medium.com/the-modern-scientist/what-is-the-shapley-value-8ca624274d5a
+		@Test
+		public void example1Test() {
+			Set<String> n = new HashSet<>(Arrays.asList(
+					"P1", "P2","P3"));
+			
+			Function<Set<String>, Double> v=  s -> {;
+				double res=0.0;
+		        if(s.isEmpty())
+		        	res= 0.0;
+		        else if(s.size()==1) {
+		        	if(s.contains("P1"))
+		        		res=80;
+		        	if(s.contains("P2"))
+		        		res=56;
+		        	if(s.contains("P3"))
+		        		res=70;
+		        } else if(s.size()==2) {
+			       	if(s.contains("P1")&&s.contains("P2"))
+			       		res=80;
+			       	if(s.contains("P1")&& s.contains("P3"))
+			       		res=85;
+			       	if(s.contains("P2")&&s.contains("P3"))
+			       		res=72;
+		        } else {
+		        	res= 90;
+		        }
+		        //System.out.println("v(s) ("+s+")="+res);
+		        return res;
+		    };
+		    
+		    ShapleySimple shapley = new ShapleySimple(v,n);
+			assertEquals(shapley.calculate("P1"),39.16, 2);
+		}
+		
+		@Test
+		public void example2GloveTest() {
+			Set<String> n = new HashSet<>(Arrays.asList(
+					"P1", "P2","P3"));
+					
+			Function<Set<String>, Double> v=  s -> {
+				double res=0.0;
+		        if(s.isEmpty())
+		        	res= 0.0;
+		        else if(s.size()==1) {
+		        	res=0;
+		        } else if(s.size()==2) {
+			       	if(s.contains("P1")&&s.contains("P2"))
+			       		res=0;
+			       	if(s.contains("P1")&& s.contains("P3"))
+			       		res=1;
+			       	if(s.contains("P2")&&s.contains("P3"))
+			       		res=1;
+		        } else {
+		        	res= 1;
+		        }
+		        //System.out.println("v(s) ("+s+")="+res);
+		        return res;
+		    };
+		    
+		    ShapleySimple shapley = new ShapleySimple(v,n);
+			assertEquals(shapley.calculate("P1"),1.0/6);
+			assertEquals(shapley.calculate("P2"),1.0/6);
+			assertEquals(shapley.calculate("P3"),4.0/6);
+		}
+	}
 
 }
