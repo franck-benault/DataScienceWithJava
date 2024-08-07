@@ -45,5 +45,30 @@ public class TestParliament {
 		System.out.println(p.calculate("P5"));
 		System.out.println(p.calculate("P6"));
 	}
+	
+	@Test
+	public void example3BelgiumParliamentTest() {
+		Map<String,Integer> nbMpPerParty =
+				new HashMap<>();
+		
+		nbMpPerParty.put("N-VA",24);
+		nbMpPerParty.put("VB",20);
+		nbMpPerParty.put("MR",19);
+		nbMpPerParty.put("PS",16);
+		nbMpPerParty.put("PTB/PVDA",15);
+		nbMpPerParty.put("LE",14);
+		nbMpPerParty.put("Vooruit",13);
+		nbMpPerParty.put("CD&V",11);
+		nbMpPerParty.put("Ecolo/Groen",9);
+		nbMpPerParty.put("Open VLD",8);
+		nbMpPerParty.put("DeFI",1);
+		
+		Parliament p = new Parliament(nbMpPerParty);
+		for(String party : nbMpPerParty.keySet())		
+			System.out.println("party "+party+" "+p.calculate(party));
+
+	}
+	
+
 }
 
