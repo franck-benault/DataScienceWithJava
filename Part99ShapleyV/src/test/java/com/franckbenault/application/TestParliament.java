@@ -38,12 +38,13 @@ public class TestParliament {
 		
 		Parliament p = new Parliament(nbMpPerParty);
 
-		System.out.println(p.calculate("P1"));
-		System.out.println(p.calculate("P2"));
-		System.out.println(p.calculate("P3"));
-		System.out.println(p.calculate("P4"));
-		System.out.println(p.calculate("P5"));
-		System.out.println(p.calculate("P6"));
+
+		double sum=0.0;
+		for(String party : nbMpPerParty.keySet()) {		
+			System.out.println("party "+party+" "+p.calculate(party));
+			sum+=p.calculate(party);
+		}
+		assertEquals(sum,1.0, 0.1);
 	}
 	
 	@Test
@@ -64,8 +65,48 @@ public class TestParliament {
 		nbMpPerParty.put("DeFI",1);
 		
 		Parliament p = new Parliament(nbMpPerParty);
-		for(String party : nbMpPerParty.keySet())		
+		double sum =0.0;
+		for(String party : nbMpPerParty.keySet()) {		
 			System.out.println("party "+party+" "+p.calculate(party));
+			sum+=p.calculate(party);
+		}
+		assertEquals(sum,1.0, 0.1);
+
+	}
+	
+	@Test
+	public void example3BelgiumParliamentTest22() {
+		Map<String,Integer> nbMpPerParty =
+				new HashMap<>();
+		
+		nbMpPerParty.put("N-VA",24);
+		nbMpPerParty.put("VB",20);
+		nbMpPerParty.put("MR",19);
+		nbMpPerParty.put("PS",16);
+		nbMpPerParty.put("PTB/PVDA",15);
+		nbMpPerParty.put("LE",14);
+		nbMpPerParty.put("Vooruit",13);
+		nbMpPerParty.put("CD&V",11);
+		nbMpPerParty.put("Ecolo/Groen",9);
+		nbMpPerParty.put("Open VLD",8);
+		
+		nbMpPerParty.put("petit1",1);
+		nbMpPerParty.put("petit2",2);
+		nbMpPerParty.put("petit3",3);
+		nbMpPerParty.put("petit4",4);
+		nbMpPerParty.put("petit5",5);
+		//nbMpPerParty.put("petit6",6);	
+		//nbMpPerParty.put("petit7",7);	
+		//nbMpPerParty.put("petit8",8);	
+		//nbMpPerParty.put("petit9",9);	//set site 19 it becomes slow
+		
+		Parliament p = new Parliament(nbMpPerParty);
+		double sum =0.0;
+		for(String party : nbMpPerParty.keySet()) {		
+			System.out.println("party "+party+" "+p.calculate(party));
+			sum+=p.calculate(party);
+		}
+		assertEquals(sum,1.0, 0.1);
 
 	}
 	

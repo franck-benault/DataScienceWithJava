@@ -28,7 +28,7 @@ public class Util {
 		
 	}
 	
-	public static int factorial(int i) {
+	public static long factorial(int i) {
 		if(i<=1)
 			return 1;
 		else {

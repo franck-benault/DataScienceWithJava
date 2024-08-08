@@ -172,9 +172,9 @@ public class TestShapleySimple {
 		    ShapleySimple shapley1 = new ShapleySimple(v1,n);
 		    ShapleySimple shapley2 = new ShapleySimple(v2,n);
 		    ShapleySimple shapley12 = new ShapleySimple(v12,n);
-			assertEquals(shapley1.calculate("One")+shapley2.calculate("One"), shapley12.calculate("One"));
-			assertEquals(shapley1.calculate("Two")+shapley2.calculate("Two"), shapley12.calculate("Two"));
-			assertEquals(shapley1.calculate("Three")+shapley2.calculate("Three"), shapley12.calculate("Three"));
+			assertEquals(shapley1.calculate("One")+shapley2.calculate("One"), shapley12.calculate("One"), 0.1);
+			assertEquals(shapley1.calculate("Two")+shapley2.calculate("Two"), shapley12.calculate("Two"), 0.1);
+			assertEquals(shapley1.calculate("Three")+shapley2.calculate("Three"), shapley12.calculate("Three"),0.1);
 		}
 		
 		

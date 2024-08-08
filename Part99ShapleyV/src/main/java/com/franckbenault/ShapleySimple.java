@@ -44,16 +44,16 @@ public class ShapleySimple {
 				Set<String> sMinusI = new HashSet<String>();
 				sMinusI.addAll(s);
 				sMinusI.remove(i);			
-				int weight = Util.factorial(sMinusI.size())*(Util.factorial(n.size()-sMinusI.size()-1));
+				long weight = Util.factorial(sMinusI.size())*(Util.factorial(n.size()-sMinusI.size()-1));
 				System.out.println("weight="+weight);
 				
 				Double v2 =v.apply(sMinusI);
 				Double marginal = v1-v2;
 				System.out.println("marginal "+marginal);
-				temp+=weight*marginal;
+				temp+=weight*marginal/Util.factorial(n.size());
 			}
 		}
-		double res= temp/Util.factorial(n.size());	
+		double res= temp;
 		System.out.println(res);
 		return res;
 	}
