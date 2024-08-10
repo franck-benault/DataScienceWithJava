@@ -29,7 +29,7 @@ public class TestShapleySimple {
 		    };
 		    
 		    ShapleySimple shapley = new ShapleySimple(v,n);
-			assertEquals(shapley.calculate("One"),100.0);		
+			assertEquals(shapley.getShapleyValue("One"),100.0);		
 			
 		}
 		
@@ -47,8 +47,8 @@ public class TestShapleySimple {
 		    };
 		    
 		    ShapleySimple shapley = new ShapleySimple(v,n);
-			assertEquals(shapley.calculate("One"),50.0);
-			assertEquals(shapley.calculate("Two"),50.0);
+			assertEquals(shapley.getShapleyValue("One"),50.0);
+			assertEquals(shapley.getShapleyValue("Two"),50.0);
 			
 		}
 		
@@ -74,7 +74,7 @@ public class TestShapleySimple {
 		    };
 		    
 		    ShapleySimple shapley = new ShapleySimple(v,n);
-			assertEquals(shapley.calculate("One"),shapley.calculate("Two"));
+			assertEquals(shapley.getShapleyValue("One"),shapley.getShapleyValue("Two"));
 			
 			
 		}
@@ -102,7 +102,7 @@ public class TestShapleySimple {
 		    
 		    ShapleySimple shapley = new ShapleySimple(v,n);
 			assertEquals(
-					shapley.calculate("One")+shapley.calculate("Two"),
+					shapley.getShapleyValue("One")+shapley.getShapleyValue("Two"),
 					v.apply(n), 
 					"Efficiency some of all shapley value equals the value of the great coalition");
 			
@@ -129,9 +129,9 @@ public class TestShapleySimple {
 		    };
 		    
 		    ShapleySimple shapley = new ShapleySimple(v,n);
-			assertEquals(shapley.calculate("One"),shapley.calculate("Two"));
-			assertEquals(shapley.calculate("One"),shapley.calculate("Three"));			
-			assertEquals(shapley.calculate("One"),shapley.calculate("Four"));			
+			assertEquals(shapley.getShapleyValue("One"),shapley.getShapleyValue("Two"));
+			assertEquals(shapley.getShapleyValue("One"),shapley.getShapleyValue("Three"));			
+			assertEquals(shapley.getShapleyValue("One"),shapley.getShapleyValue("Four"));			
 		}
 		
 		
@@ -172,9 +172,9 @@ public class TestShapleySimple {
 		    ShapleySimple shapley1 = new ShapleySimple(v1,n);
 		    ShapleySimple shapley2 = new ShapleySimple(v2,n);
 		    ShapleySimple shapley12 = new ShapleySimple(v12,n);
-			assertEquals(shapley1.calculate("One")+shapley2.calculate("One"), shapley12.calculate("One"), 0.1);
-			assertEquals(shapley1.calculate("Two")+shapley2.calculate("Two"), shapley12.calculate("Two"), 0.1);
-			assertEquals(shapley1.calculate("Three")+shapley2.calculate("Three"), shapley12.calculate("Three"),0.1);
+			assertEquals(shapley1.getShapleyValue("One")+shapley2.getShapleyValue("One"), shapley12.getShapleyValue("One"), 0.1);
+			assertEquals(shapley1.getShapleyValue("Two")+shapley2.getShapleyValue("Two"), shapley12.getShapleyValue("Two"), 0.1);
+			assertEquals(shapley1.getShapleyValue("Three")+shapley2.getShapleyValue("Three"), shapley12.getShapleyValue("Three"),0.1);
 		}
 		
 		
@@ -199,7 +199,7 @@ public class TestShapleySimple {
 		    };
 		    
 		    ShapleySimple shapley = new ShapleySimple(v,n);
-			assertEquals(shapley.calculate("OneDoNothing"),0.0);
+			assertEquals(shapley.getShapleyValue("OneDoNothing"),0.0);
 			
 			
 		}
@@ -242,7 +242,7 @@ public class TestShapleySimple {
 		    };
 		    
 		    ShapleySimple shapley = new ShapleySimple(v,n);
-			assertEquals(shapley.calculate("P1"),39.16, 2);
+			assertEquals(shapley.getShapleyValue("P1"),39.16, 2);
 		}
 		
 		@Test
@@ -271,9 +271,9 @@ public class TestShapleySimple {
 		    };
 		    
 		    ShapleySimple shapley = new ShapleySimple(v,n);
-			assertEquals(shapley.calculate("P1"),1.0/6);
-			assertEquals(shapley.calculate("P2"),1.0/6);
-			assertEquals(shapley.calculate("P3"),4.0/6);
+			assertEquals(shapley.getShapleyValue("P1"),1.0/6);
+			assertEquals(shapley.getShapleyValue("P2"),1.0/6);
+			assertEquals(shapley.getShapleyValue("P3"),4.0/6);
 		}
 	}
 	

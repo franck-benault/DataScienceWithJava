@@ -38,11 +38,11 @@ public class Parliament {
 		
 		
 	    shapley = new ShapleySimple(v,n);
-	    shapley.calculateAll();
+	    shapley.calculateAllShapleyValues();
 	}
 	
 	public double calculate(String party) {
-		return shapley.calculate(party);
+		return shapley.getShapleyValue(party);
 	}
 
 }

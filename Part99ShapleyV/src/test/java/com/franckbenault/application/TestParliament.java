@@ -75,7 +75,7 @@ public class TestParliament {
 	}
 	
 	@Test
-	public void example3BelgiumParliamentTest22() {
+	public void example3BelgiumParliamentWithALotOfPartiesTest() {
 		Map<String,Integer> nbMpPerParty =
 				new HashMap<>();
 		

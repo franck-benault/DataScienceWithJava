@@ -26,18 +26,16 @@ public class ShapleySimple {
 		powerSet = Util.powerSet(n);
 	}
 
-	public void calculateAll() {
+	public void calculateAllShapleyValues() {
 		
 		for(String i : n) {
-			res.put(i,calculate(i));
+			res.put(i,calculateShapleyValue(i));
 		}
 		
 		logger.info("calculate all res {}",res);
 	}
 	
-	public Double calculate(String i) {
-		if(res.containsKey(i))
-			return res.get(i);
+	private Double calculateShapleyValue(String i) {
 		logger.info("calculate for i {}",i);
 		double res=0.0;
 		for(Set<String> s : powerSet) {
@@ -59,6 +57,21 @@ public class ShapleySimple {
 		
 		logger.info("res={}",res);
 		return res;
+	}
+
+	
+	public Double getShapleyValue(String i) {
+		Double output = 0.0;
+		if(res.containsKey(i))
+			output=res.get(i);
+		else {
+			output= calculateShapleyValue(i);
+			res.put(i,output);
+		}
+			
+		
+		logger.info("res={}",res);
+		return output;
 	}
 	
 
