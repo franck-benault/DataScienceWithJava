@@ -5,9 +5,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.franckbenault.ShapleySimple;
 
 public class Parliament {
+	private Logger logger = LoggerFactory.getLogger(Parliament.class);
 	
 	private Map<String,Integer> npMPPerParty = null;
 	private ShapleySimple shapley =null;
@@ -19,7 +23,7 @@ public class Parliament {
 		Set<String> n= this.npMPPerParty.keySet();
 		int totalMp = this.npMPPerParty.values().stream().reduce(0, Integer::sum);
 		int majority = totalMp/2+1;
-		System.out.println("####### Majority ="+majority);
+		logger.info("Majority = {}",majority);
 				
 		Function<Set<String>, Double> v=  s -> {
 			int nbMp =0;

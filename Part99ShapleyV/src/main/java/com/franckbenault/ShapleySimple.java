@@ -6,8 +6,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ShapleySimple {
 	
+	private Logger logger = LoggerFactory.getLogger(ShapleySimple.class);
+    	
 	private Function<Set<String>, Double> v;
 	private Set<String> n;
 	private Set<Set<String>> powerSet;
@@ -27,34 +32,32 @@ public class ShapleySimple {
 			res.put(i,calculate(i));
 		}
 		
-		
-		//System.out.println("powerSet "+powerSet);
-		System.out.println("calculate all res "+res);
+		logger.info("calculate all res {}",res);
 	}
 	
 	public Double calculate(String i) {
 		if(res.containsKey(i))
 			return res.get(i);
-		System.out.println("calculate for i "+i);
-		double temp=0.0;
+		logger.info("calculate for i {}",i);
+		double res=0.0;
 		for(Set<String> s : powerSet) {
 			if(s.contains(i)) {
-				System.out.println("set involved "+s);		
+				logger.info("set involved {}",s);		
 				Double v1 = v.apply(s);
 				Set<String> sMinusI = new HashSet<String>();
 				sMinusI.addAll(s);
 				sMinusI.remove(i);			
 				long weight = Util.factorial(sMinusI.size())*(Util.factorial(n.size()-sMinusI.size()-1));
-				System.out.println("weight="+weight);
+				logger.info("weight={}",weight);
 				
 				Double v2 =v.apply(sMinusI);
 				Double marginal = v1-v2;
-				System.out.println("marginal "+marginal);
-				temp+=weight*marginal/Util.factorial(n.size());
+				logger.info("marginal={}",marginal);
+				res+=weight*marginal/Util.factorial(n.size());
 			}
 		}
-		double res= temp;
-		System.out.println(res);
+		
+		logger.info("res={}",res);
 		return res;
 	}
 	

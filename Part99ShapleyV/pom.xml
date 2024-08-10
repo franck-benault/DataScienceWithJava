@@ -7,6 +7,7 @@
 		<maven.compiler.source>22</maven.compiler.source>
 		<maven.compiler.target>22</maven.compiler.target>
 		<junit.version>5.10.3</junit.version>
+		<slf4j.version>2.0.15</slf4j.version>
 	</properties>
 
 	<dependencies>
@@ -17,9 +18,16 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-math3</artifactId>
-			<version>3.6.1</version>
+    		<groupId>org.slf4j</groupId>
+    		<artifactId>slf4j-api</artifactId>
+    		<version>${slf4j.version}</version>
+    		<scope>compile</scope>
+		</dependency>
+		<dependency>
+    		<groupId>org.slf4j</groupId>
+    		<artifactId>slf4j-simple</artifactId>
+    		<version>${slf4j.version}</version>
+    		<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>
