@@ -36,26 +36,26 @@ public class ShapleySimple {
 	}
 	
 	private Double calculateShapleyValue(String i) {
-		logger.info("calculate for i {}",i);
+		logger.debug("calculate for i {}",i);
 		double res=0.0;
 		for(Set<String> s : powerSet) {
 			if(s.contains(i)) {
-				logger.info("set involved {}",s);		
+				logger.debug("set involved {}",s);		
 				Double v1 = v.apply(s);
 				Set<String> sMinusI = new HashSet<String>();
 				sMinusI.addAll(s);
 				sMinusI.remove(i);			
 				long weight = Util.factorial(sMinusI.size())*(Util.factorial(n.size()-sMinusI.size()-1));
-				logger.info("weight={}",weight);
+				logger.debug("weight={}",weight);
 				
 				Double v2 =v.apply(sMinusI);
 				Double marginal = v1-v2;
-				logger.info("marginal={}",marginal);
+				logger.debug("marginal={}",marginal);
 				res+=weight*marginal/Util.factorial(n.size());
 			}
 		}
 		
-		logger.info("res={}",res);
+		logger.debug("res={}",res);
 		return res;
 	}
 
@@ -70,7 +70,7 @@ public class ShapleySimple {
 		}
 			
 		
-		logger.info("res={}",res);
+		logger.debug("res={}",res);
 		return output;
 	}
 	
