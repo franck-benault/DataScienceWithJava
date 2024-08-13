@@ -28,6 +28,14 @@ public class ConfusionMatrix {
 		System.out.println(nbFalseNegative+" | "+nbTrueNegative);
 	}
 	
+	public void printResult() {
+		System.out.println("Accuraty  "+accuraty());
+		System.out.println("Recall    "+recall());
+		System.out.println("Precision "+precision());
+		System.out.println("F1 score  "+f1score());
+		System.out.println();
+	}
+	
 	public double accuraty() {
 		return (0.0+nbTruePositive+ nbTrueNegative)/total;
 	}
