@@ -76,7 +76,7 @@ class ParliamentRandomSamplingTest {
 		nbMpPerParty.put("petit19",1);	
 		nbMpPerParty.put("petit20",1);
 		
-		for(int size =10000 ; size<=10000000; size*=10) {
+		for(int size =10000 ; size<=1000000; size*=10) {
 			ParliamentRandomSampling p = new ParliamentRandomSampling(nbMpPerParty,size);
 			System.out.println("###### size ="+size);
 			System.out.println("######  size/Util.factorial(nbMpPerParty.size()) "+
