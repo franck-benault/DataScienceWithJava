@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-public class TestUtil {
+public class UtilTest {
 	
 	@Test
 	public void factorialTest() {

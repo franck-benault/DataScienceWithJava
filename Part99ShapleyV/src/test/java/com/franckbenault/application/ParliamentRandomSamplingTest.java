@@ -1,4 +1,4 @@
-package com.franckbenault.randomsampling;
+package com.franckbenault.application;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,9 +8,8 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 import com.franckbenault.Util;
-import com.franckbenault.application.Parliament;
 
-class ParliamentRandomSamplingTest {
+class TestParliamentRandomSampling {
 
 	@Test
 	public void parliamentWithALotOfPartiesTest() {

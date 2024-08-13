@@ -10,7 +10,7 @@ import java.util.function.Function;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
  
-public class TestShapleyExact{
+public class ShapleyExactTest{
 	
 	@Nested
 	public class SimpleTests {

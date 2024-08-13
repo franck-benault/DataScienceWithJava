@@ -8,7 +8,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 
-public class TestParliament {
+public class ParliamentTest {
 	@Test
 	public void example1Test() {
 		Map<String,Integer> nbMpPerParty =

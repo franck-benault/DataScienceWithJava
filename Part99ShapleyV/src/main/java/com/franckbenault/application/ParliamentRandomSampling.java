@@ -1,4 +1,4 @@
-package com.franckbenault.randomsampling;
+package com.franckbenault.application;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +7,8 @@ import java.util.function.Function;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.franckbenault.randomsampling.ShapleyApproximationRandomSampling;
 
 public class ParliamentRandomSampling {
 	private Logger logger = LoggerFactory.getLogger(ParliamentRandomSampling.class);
