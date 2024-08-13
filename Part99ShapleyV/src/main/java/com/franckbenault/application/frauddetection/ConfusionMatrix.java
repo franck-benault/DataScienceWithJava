@@ -1,5 +1,7 @@
 package com.franckbenault.application.frauddetection;
 
+import java.util.List;
+
 public class ConfusionMatrix {
 	
 	private int nbTruePositive;
@@ -21,6 +23,36 @@ public class ConfusionMatrix {
 		this.nbTrueNegative=nbTrueNegative;	
 		total =nbTruePositive+nbFalsePositive+nbFalseNegative+nbTrueNegative;
 	}
+	
+	public ConfusionMatrix(
+			List<Boolean> transactions,
+			List<Integer> detectedFraudulentTs
+			) {
+		
+		nbTruePositive=0;
+		nbFalsePositive= 0;
+		nbFalseNegative= 0;
+		nbTrueNegative=0;
+		
+		total= transactions.size();
+		for(Integer detectedFraudulentT: detectedFraudulentTs) {
+			if(transactions.get(detectedFraudulentT))
+				nbTruePositive++;
+			else
+				nbFalsePositive++;
+			
+		}
+		
+		for(int count=0; count<transactions.size() ; count++) {
+			if(transactions.get(count) && !detectedFraudulentTs.contains(count))
+				nbFalseNegative++;
+
+		}
+		nbTrueNegative=total -nbTruePositive-nbFalsePositive-nbFalseNegative;
+		
+		
+	}
+	
 	
 	public void draw() {
 		System.out.println(nbTruePositive+" | "+nbFalsePositive);
