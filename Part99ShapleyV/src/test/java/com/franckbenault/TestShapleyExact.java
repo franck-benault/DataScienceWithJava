@@ -10,7 +10,7 @@ import java.util.function.Function;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
  
-public class TestShapleySimple {
+public class TestShapleyExact{
 	
 	@Nested
 	public class SimpleTests {
@@ -28,7 +28,7 @@ public class TestShapleySimple {
 		        	return 100.0;
 		    };
 		    
-		    ShapleySimple shapley = new ShapleySimple(v,n);
+		    ShapleyExact shapley = new ShapleyExact(v,n);
 			assertEquals(shapley.getShapleyValue("One"),100.0);		
 			
 		}
@@ -46,7 +46,7 @@ public class TestShapleySimple {
 		        	return 100.0;
 		    };
 		    
-		    ShapleySimple shapley = new ShapleySimple(v,n);
+		    ShapleyExact shapley = new ShapleyExact(v,n);
 			assertEquals(shapley.getShapleyValue("One"),50.0);
 			assertEquals(shapley.getShapleyValue("Two"),50.0);
 			
@@ -73,7 +73,7 @@ public class TestShapleySimple {
 		        return res;
 		    };
 		    
-		    ShapleySimple shapley = new ShapleySimple(v,n);
+		    ShapleyExact shapley = new ShapleyExact(v,n);
 			assertEquals(shapley.getShapleyValue("One"),shapley.getShapleyValue("Two"));
 			
 			
@@ -100,7 +100,7 @@ public class TestShapleySimple {
 		        	return 100.0;
 		    };
 		    
-		    ShapleySimple shapley = new ShapleySimple(v,n);
+		    ShapleyExact shapley = new ShapleyExact(v,n);
 			assertEquals(
 					shapley.getShapleyValue("One")+shapley.getShapleyValue("Two"),
 					v.apply(n), 
@@ -128,7 +128,7 @@ public class TestShapleySimple {
 		        	return 100.0;
 		    };
 		    
-		    ShapleySimple shapley = new ShapleySimple(v,n);
+		    ShapleyExact shapley = new ShapleyExact(v,n);
 			assertEquals(shapley.getShapleyValue("One"),shapley.getShapleyValue("Two"));
 			assertEquals(shapley.getShapleyValue("One"),shapley.getShapleyValue("Three"));			
 			assertEquals(shapley.getShapleyValue("One"),shapley.getShapleyValue("Four"));			
@@ -169,9 +169,9 @@ public class TestShapleySimple {
 		    
 		    Function<Set<String>, Double> v12=  s -> v1.apply(s)+v2.apply(s);
 		    
-		    ShapleySimple shapley1 = new ShapleySimple(v1,n);
-		    ShapleySimple shapley2 = new ShapleySimple(v2,n);
-		    ShapleySimple shapley12 = new ShapleySimple(v12,n);
+		    ShapleyExact shapley1 = new ShapleyExact(v1,n);
+		    ShapleyExact shapley2 = new ShapleyExact(v2,n);
+		    ShapleyExact shapley12 = new ShapleyExact(v12,n);
 			assertEquals(shapley1.getShapleyValue("One")+shapley2.getShapleyValue("One"), shapley12.getShapleyValue("One"), 0.1);
 			assertEquals(shapley1.getShapleyValue("Two")+shapley2.getShapleyValue("Two"), shapley12.getShapleyValue("Two"), 0.1);
 			assertEquals(shapley1.getShapleyValue("Three")+shapley2.getShapleyValue("Three"), shapley12.getShapleyValue("Three"),0.1);
@@ -198,7 +198,7 @@ public class TestShapleySimple {
 		        return res;
 		    };
 		    
-		    ShapleySimple shapley = new ShapleySimple(v,n);
+		    ShapleyExact shapley = new ShapleyExact(v,n);
 			assertEquals(shapley.getShapleyValue("OneDoNothing"),0.0);
 			
 			
@@ -241,7 +241,7 @@ public class TestShapleySimple {
 		        return res;
 		    };
 		    
-		    ShapleySimple shapley = new ShapleySimple(v,n);
+		    ShapleyExact shapley = new ShapleyExact(v,n);
 			assertEquals(shapley.getShapleyValue("P1"),39.16, 2);
 		}
 		
@@ -270,7 +270,7 @@ public class TestShapleySimple {
 		        return res;
 		    };
 		    
-		    ShapleySimple shapley = new ShapleySimple(v,n);
+		    ShapleyExact shapley = new ShapleyExact(v,n);
 			assertEquals(shapley.getShapleyValue("P1"),1.0/6);
 			assertEquals(shapley.getShapleyValue("P2"),1.0/6);
 			assertEquals(shapley.getShapleyValue("P3"),4.0/6);

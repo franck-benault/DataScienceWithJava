@@ -9,9 +9,9 @@ import java.util.function.Function;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ShapleySimple {
+public class ShapleyExact {
 	
-	private Logger logger = LoggerFactory.getLogger(ShapleySimple.class);
+	private Logger logger = LoggerFactory.getLogger(ShapleyExact.class);
     	
 	private Function<Set<String>, Double> v;
 	private Set<String> n;
@@ -19,7 +19,7 @@ public class ShapleySimple {
 	
 	private Map<String, Double> res = null;
 	
-	public ShapleySimple(Function<Set<String>, Double> v, Set<String> n) {
+	public ShapleyExact(Function<Set<String>, Double> v, Set<String> n) {
 		this.v=v;
 		this.n=n;
 		res = new HashMap<String , Double>();

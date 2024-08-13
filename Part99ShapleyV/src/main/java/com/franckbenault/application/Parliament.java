@@ -8,13 +8,13 @@ import java.util.function.Function;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.franckbenault.ShapleySimple;
+import com.franckbenault.ShapleyExact;
 
 public class Parliament {
 	private Logger logger = LoggerFactory.getLogger(Parliament.class);
 	
 	private Map<String,Integer> npMPPerParty = null;
-	private ShapleySimple shapley =null;
+	private ShapleyExact shapley =null;
 	
 	public Parliament(Map<String,Integer> npMPPerParty) {
 		this.npMPPerParty = new HashMap<>();
@@ -37,7 +37,7 @@ public class Parliament {
 	    };
 		
 		
-	    shapley = new ShapleySimple(v,n);
+	    shapley = new ShapleyExact(v,n);
 	    shapley.calculateAllShapleyValues();
 	}
 	
