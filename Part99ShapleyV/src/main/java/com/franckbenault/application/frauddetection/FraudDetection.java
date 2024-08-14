@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import com.franckbenault.ShapleyI;
 import com.franckbenault.exact.ShapleyExact;
+import com.franckbenault.randomsampling.ShapleyApproximationRandomSampling;
 
 public class FraudDetection {
 	
@@ -26,7 +27,7 @@ public class FraudDetection {
 	private Set<String> rejectedRules;
 
 	public FraudDetection(List<Boolean> transactions,
-			Map<String,Set<Integer>> fraudDetectionRules) {
+			Map<String,Set<Integer>> fraudDetectionRules, boolean exact, int sampleSize) {
 		this.transactions = new ArrayList<>(transactions);
 		this.fraudDetectionRules =new HashMap<>();
 		this.fraudDetectionRules.putAll(fraudDetectionRules);
@@ -41,8 +42,10 @@ public class FraudDetection {
 			else 
 				rejectedRules.add(rule);
 		}
-		 
-	    shapley = new ShapleyExact(getF1Score,n);
+		if(exact) 
+			shapley = new ShapleyExact(getF1Score,n);
+		else
+			shapley = new ShapleyApproximationRandomSampling(getF1Score,n,sampleSize);
 	    shapley.calculateAllShapleyValues();
 	}
 	

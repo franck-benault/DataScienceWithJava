@@ -30,7 +30,7 @@ class FraudDetectionTest {
 		fraudDetectionRules.put("r4",new HashSet<Integer>(Arrays.asList(7,8,9)));
 		fraudDetectionRules.put("r5",new HashSet<Integer>(Arrays.asList(0,1,2,3,4,5,6,7,8,9)));
 		
-		FraudDetection f = new FraudDetection(transactions, fraudDetectionRules);	
+		FraudDetection f = new FraudDetection(transactions, fraudDetectionRules,true,0);	
 		f.showAllSortedRules();
 		f.showScoreFirstRules();
 
@@ -56,7 +56,7 @@ class FraudDetectionTest {
 		fraudDetectionRules.put("r8",new HashSet<Integer>(Arrays.asList(3,7,8,9)));
 		fraudDetectionRules.put("r9",new HashSet<Integer>(Arrays.asList(1,2,3,7,8,9)));
 		
-		FraudDetection f = new FraudDetection(transactions, fraudDetectionRules);	
+		FraudDetection f = new FraudDetection(transactions, fraudDetectionRules,true,0);	
 		f.showAllSortedRules();
 		f.showScoreFirstRules();
 
@@ -92,9 +92,18 @@ class FraudDetectionTest {
 		fraudDetectionRules.put("r15",new HashSet<Integer>(Arrays.asList(1,2,8,23,45,48)));
 		fraudDetectionRules.put("r16",new HashSet<Integer>(Arrays.asList(1,2,8,21,40,48)));
 		
-		FraudDetection f = new FraudDetection(transactions, fraudDetectionRules);	
+		FraudDetection f = new FraudDetection(transactions, fraudDetectionRules,true,0);	
 		f.showAllSortedRules();
 		f.showScoreFirstRules();
+		System.out.println("----------");
+			
+		f = new FraudDetection(transactions, fraudDetectionRules,false,1_000);	
+		f.showAllSortedRules();
+		System.out.println("----------");
+		
+		f = new FraudDetection(transactions, fraudDetectionRules,false,10_000);	
+		f.showAllSortedRules();
+
 
 	}
 
