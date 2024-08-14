@@ -1,4 +1,4 @@
-package com.franckbenault;
+package com.franckbenault.exact;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,7 +12,10 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ShapleyExact {
+import com.franckbenault.ShapleyI;
+import com.franckbenault.Util;
+
+public class ShapleyExact implements ShapleyI {
 	
 	private Logger logger = LoggerFactory.getLogger(ShapleyExact.class);
     	
@@ -29,6 +32,7 @@ public class ShapleyExact {
 		powerSet = Util.powerSet(n);
 	}
 
+	@Override
 	public void calculateAllShapleyValues() {
 		
 		for(String i : n) {
@@ -62,14 +66,14 @@ public class ShapleyExact {
 		return res;
 	}
 
-	
-	public Double getShapleyValue(String i) {
+	@Override
+	public Double getShapleyValue(String key) {
 		Double output = 0.0;
-		if(res.containsKey(i))
-			output=res.get(i);
+		if(res.containsKey(key))
+			output=res.get(key);
 		else {
-			output= calculateShapleyValue(i);
-			res.put(i,output);
+			output= calculateShapleyValue(key);
+			res.put(key,output);
 		}
 			
 		
@@ -77,7 +81,7 @@ public class ShapleyExact {
 		return output;
 	}
 	
-	public static <K, V extends Comparable<? super V>> Map<K, V> sortMapByValueDescending(Map<K, V> map) {
+	private static <K, V extends Comparable<? super V>> Map<K, V> sortMapByValueDescending(Map<K, V> map) {
 	    return map.entrySet()
 	      .stream()
 	      .sorted(Map.Entry.<K, V>comparingByValue().reversed())
@@ -93,6 +97,7 @@ public class ShapleyExact {
 		
 	}
 
+	@Override
 	public Map<String, Double> getAllSortedValue() {
 		
         Map<String, Double> sortedMap = sortMapByValueDescending(res);

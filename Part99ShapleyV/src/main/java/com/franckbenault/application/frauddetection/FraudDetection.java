@@ -7,12 +7,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 import java.util.function.Function;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.franckbenault.ShapleyExact;
+import com.franckbenault.ShapleyI;
+import com.franckbenault.exact.ShapleyExact;
 
 public class FraudDetection {
 	
@@ -20,7 +22,7 @@ public class FraudDetection {
 	
 	private List<Boolean> transactions = null;
 	private Map<String, Set<Integer>> fraudDetectionRules = null;
-	private ShapleyExact shapley =null;
+	private ShapleyI shapley =null;
 	private Set<String> rejectedRules;
 
 	public FraudDetection(List<Boolean> transactions,
@@ -64,7 +66,10 @@ public class FraudDetection {
 	}
 	
 	public void showAllSortedRules() {
-		shapley.showAllSortedValue();
+        Map<String, Double> sortedMap = shapley.getAllSortedValue();
+		logger.debug(""+sortedMap);
+		for(Entry<String, Double> entry : sortedMap.entrySet())
+			logger.info("{} Shapley value= {}", entry.getKey(), entry.getValue());
 	}
 	
 	public void showScoreFirstRules() {

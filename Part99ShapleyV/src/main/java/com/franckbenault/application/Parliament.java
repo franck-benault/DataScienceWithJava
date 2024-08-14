@@ -8,13 +8,14 @@ import java.util.function.Function;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.franckbenault.ShapleyExact;
+import com.franckbenault.ShapleyI;
+import com.franckbenault.exact.ShapleyExact;
 
 public class Parliament {
 	private Logger logger = LoggerFactory.getLogger(Parliament.class);
 	
 	private Map<String,Integer> npMPPerParty = null;
-	private ShapleyExact shapley =null;
+	private ShapleyI shapley =null;
 	
 	public Parliament(Map<String,Integer> npMPPerParty) {
 		this.npMPPerParty = new HashMap<>();
