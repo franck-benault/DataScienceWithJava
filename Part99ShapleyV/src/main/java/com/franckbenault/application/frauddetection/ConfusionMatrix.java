@@ -1,38 +1,50 @@
 package com.franckbenault.application.frauddetection;
 
 import java.util.List;
+import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ConfusionMatrix {
+	
+	private Logger logger = LoggerFactory.getLogger(ConfusionMatrix.class);
 	
 	private int nbTruePositive;
 	private int nbFalsePositive;
 	private int nbFalseNegative;
 	private int nbTrueNegative;
 	private int total;
+	private String matrixName;
 	
 	public ConfusionMatrix(
 			int nbTruePositive,
 			int nbFalsePositive,
 			int nbFalseNegative,
-			int nbTrueNegative
+			int nbTrueNegative,
+			String matrixName
 			) {
 		
 		this.nbTruePositive= nbTruePositive;
 		this.nbFalsePositive= nbFalsePositive;
 		this.nbFalseNegative= nbFalseNegative;
 		this.nbTrueNegative=nbTrueNegative;	
+		this.matrixName=matrixName;
 		total =nbTruePositive+nbFalsePositive+nbFalseNegative+nbTrueNegative;
 	}
 	
 	public ConfusionMatrix(
 			List<Boolean> transactions,
-			List<Integer> detectedFraudulentTs
+			Set<Integer> detectedFraudulentTs,
+			String matrixName
 			) {
 		
 		nbTruePositive=0;
 		nbFalsePositive= 0;
 		nbFalseNegative= 0;
 		nbTrueNegative=0;
+		this.matrixName=matrixName;
+		
 		
 		total= transactions.size();
 		for(Integer detectedFraudulentT: detectedFraudulentTs) {
@@ -55,17 +67,22 @@ public class ConfusionMatrix {
 	
 	
 	public void draw() {
-		System.out.println(nbTruePositive+" | "+nbFalsePositive);
-		System.out.println("-------- ");
-		System.out.println(nbFalseNegative+" | "+nbTrueNegative);
+		if(matrixName!=null)
+			logger.info("---{}-----", matrixName);
+		logger.info("{} | {} ",nbTruePositive, nbFalsePositive);
+		logger.info("-------- ");
+		logger.info("{} | {} ",nbFalseNegative,nbTrueNegative);
+		logger.info("");
 	}
 	
 	public void printResult() {
-		System.out.println("Accuraty  "+accuraty());
-		System.out.println("Recall    "+recall());
-		System.out.println("Precision "+precision());
-		System.out.println("F1 score  "+f1score());
-		System.out.println();
+		if(matrixName!=null)
+			logger.info("figure for {}",matrixName);
+		logger.info("Accuraty  {}",accuraty());
+		logger.info("Recall    {}",recall());
+		logger.info("Precision {}",precision());
+		logger.info("F1 score  {}",f1score());
+		logger.info("");
 	}
 	
 	public double accuraty() {

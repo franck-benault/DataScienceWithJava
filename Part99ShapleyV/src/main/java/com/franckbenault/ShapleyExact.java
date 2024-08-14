@@ -2,9 +2,12 @@ package com.franckbenault;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,6 +75,22 @@ public class ShapleyExact {
 		
 		logger.debug("res={}",res);
 		return output;
+	}
+	
+	public static <K, V extends Comparable<? super V>> Map<K, V> sortMapByValueDescending(Map<K, V> map) {
+	    return map.entrySet()
+	      .stream()
+	      .sorted(Map.Entry.<K, V>comparingByValue().reversed())
+	      .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+	}
+	
+	public void showAllSortedValue() {
+		
+        Map<String, Double> sortedMap = sortMapByValueDescending(res);
+		logger.debug(""+sortedMap);
+		for(Entry<String, Double> entry : sortedMap.entrySet())
+			logger.info("{} value= {}", entry.getKey(), entry.getValue());
+		
 	}
 	
 
