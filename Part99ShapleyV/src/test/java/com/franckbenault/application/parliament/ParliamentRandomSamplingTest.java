@@ -1,4 +1,4 @@
-package com.franckbenault.application;
+package com.franckbenault.application.parliament;
 
 import static org.junit.jupiter.api.Assertions.*;
 

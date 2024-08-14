@@ -1,4 +1,4 @@
-package com.franckbenault.application;
+package com.franckbenault.application.parliament;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,22 +9,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.franckbenault.ShapleyI;
-import com.franckbenault.exact.ShapleyExact;
+import com.franckbenault.randomsampling.ShapleyApproximationRandomSampling;
 
-public class Parliament {
-	private Logger logger = LoggerFactory.getLogger(Parliament.class);
+public class ParliamentRandomSampling {
+	private Logger logger = LoggerFactory.getLogger(ParliamentRandomSampling.class);
 	
 	private Map<String,Integer> npMPPerParty = null;
 	private ShapleyI shapley =null;
 	
-	public Parliament(Map<String,Integer> npMPPerParty) {
+	public ParliamentRandomSampling(Map<String,Integer> npMPPerParty, int randomSampleSize) {
 		this.npMPPerParty = new HashMap<>();
 		this.npMPPerParty.putAll(npMPPerParty);
 		
 		Set<String> n= this.npMPPerParty.keySet();
 		int totalMp = this.npMPPerParty.values().stream().reduce(0, Integer::sum);
 		int majority = totalMp/2+1;
-		logger.info("Majority = {}",majority);
+		logger.debug("Majority = {}",majority);
 				
 		Function<Set<String>, Double> v=  s -> {
 			int nbMp =0;
@@ -38,7 +38,7 @@ public class Parliament {
 	    };
 		
 		
-	    shapley = new ShapleyExact(v,n);
+	    shapley = new ShapleyApproximationRandomSampling(v,n, randomSampleSize);
 	    shapley.calculateAllShapleyValues();
 	}
 	
