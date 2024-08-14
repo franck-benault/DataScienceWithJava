@@ -88,14 +88,6 @@ public class ShapleyExact implements ShapleyI {
 	      .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 	}
 	
-	public void showAllSortedValue() {
-		
-        Map<String, Double> sortedMap = sortMapByValueDescending(res);
-		logger.debug(""+sortedMap);
-		for(Entry<String, Double> entry : sortedMap.entrySet())
-			logger.info("{} Shapley value= {}", entry.getKey(), entry.getValue());
-		
-	}
 
 	@Override
 	public Map<String, Double> getAllSortedValue() {
