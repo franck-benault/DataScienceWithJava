@@ -89,10 +89,16 @@ public class ShapleyExact {
         Map<String, Double> sortedMap = sortMapByValueDescending(res);
 		logger.debug(""+sortedMap);
 		for(Entry<String, Double> entry : sortedMap.entrySet())
-			logger.info("{} value= {}", entry.getKey(), entry.getValue());
+			logger.info("{} Shapley value= {}", entry.getKey(), entry.getValue());
 		
 	}
-	
+
+	public Map<String, Double> getAllSortedValue() {
+		
+        Map<String, Double> sortedMap = sortMapByValueDescending(res);
+        return sortedMap;
+		
+	}
 
 	
 
