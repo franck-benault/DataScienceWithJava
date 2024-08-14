@@ -11,7 +11,10 @@ import java.util.function.Function;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ShapleyApproximationRandomSampling {
+import com.franckbenault.ShapleyI;
+import com.franckbenault.Util;
+
+public class ShapleyApproximationRandomSampling implements ShapleyI {
 	
 	private Logger logger = LoggerFactory.getLogger(ShapleyApproximationRandomSampling.class);
     	
@@ -28,6 +31,7 @@ public class ShapleyApproximationRandomSampling {
 		res = new HashMap<String , Double>();
 	}
 
+	@Override
 	public void calculateAllShapleyValues() {
 		
     	List<String> temp = new ArrayList<>(n);
@@ -51,16 +55,24 @@ public class ShapleyApproximationRandomSampling {
 	
 
 
-	
-	public Double getShapleyValue(String i) {
+	@Override
+	public Double getShapleyValue(String key) {
 		Double output = 0.0;
-		if(!res.containsKey(i))
+		if(!res.containsKey(key))
 			calculateAllShapleyValues();
 		
-		output=res.get(i);
+		output=res.get(key);
 		
 		logger.debug("output={}",output);
 		return output;
+	}
+
+	@Override
+	public Map<String, Double> getAllSortedValue() {
+		
+        Map<String, Double> sortedMap = Util.sortMapByValueDescending(res);
+        return sortedMap;
+		
 	}
 	
 

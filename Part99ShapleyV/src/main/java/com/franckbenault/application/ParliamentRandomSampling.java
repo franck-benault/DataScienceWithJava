@@ -8,13 +8,14 @@ import java.util.function.Function;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.franckbenault.ShapleyI;
 import com.franckbenault.randomsampling.ShapleyApproximationRandomSampling;
 
 public class ParliamentRandomSampling {
 	private Logger logger = LoggerFactory.getLogger(ParliamentRandomSampling.class);
 	
 	private Map<String,Integer> npMPPerParty = null;
-	private ShapleyApproximationRandomSampling shapley =null;
+	private ShapleyI shapley =null;
 	
 	public ParliamentRandomSampling(Map<String,Integer> npMPPerParty, int randomSampleSize) {
 		this.npMPPerParty = new HashMap<>();
