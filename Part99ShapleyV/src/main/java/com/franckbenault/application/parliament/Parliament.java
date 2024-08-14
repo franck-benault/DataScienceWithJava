@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.franckbenault.ShapleyI;
 import com.franckbenault.exact.ShapleyExact;
+import com.franckbenault.randomsampling.ShapleyApproximationRandomSampling;
 
 public class Parliament {
 	private Logger logger = LoggerFactory.getLogger(Parliament.class);
@@ -17,7 +18,7 @@ public class Parliament {
 	private Map<String,Integer> npMPPerParty = null;
 	private ShapleyI shapley =null;
 	
-	public Parliament(Map<String,Integer> npMPPerParty) {
+	public Parliament(Map<String,Integer> npMPPerParty, boolean exact,int samplingSize) {
 		this.npMPPerParty = new HashMap<>();
 		this.npMPPerParty.putAll(npMPPerParty);
 		
@@ -37,8 +38,10 @@ public class Parliament {
 				return 0.0;
 	    };
 		
-		
-	    shapley = new ShapleyExact(v,n);
+	    if(exact)
+		    shapley = new ShapleyExact(v,n);
+	    else
+	    	 shapley = new ShapleyApproximationRandomSampling(v,n,samplingSize);
 	    shapley.calculateAllShapleyValues();
 	}
 	

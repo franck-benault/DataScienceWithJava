@@ -12,7 +12,7 @@ import com.franckbenault.Util;
 class TestParliamentRandomSampling {
 
 	@Test
-	public void parliamentWithALotOfPartiesTest() {
+	public void parliamentWithALotOfPartiesUsingExactTest() {
 		Map<String,Integer> nbMpPerParty =
 				new HashMap<>();
 		
@@ -38,7 +38,7 @@ class TestParliamentRandomSampling {
 		nbMpPerParty.put("petit19",1);	
 		nbMpPerParty.put("petit20",1);
 		
-		Parliament p = new Parliament(nbMpPerParty);
+		Parliament p = new Parliament(nbMpPerParty,true,0);
 		double sum =0.0;
 		for(String party : nbMpPerParty.keySet()) {		
 			System.out.println("party "+party+" "+p.calculate(party));
@@ -76,7 +76,7 @@ class TestParliamentRandomSampling {
 		nbMpPerParty.put("petit20",1);
 		
 		for(int size =10000 ; size<=1000000; size*=10) {
-			ParliamentRandomSampling p = new ParliamentRandomSampling(nbMpPerParty,size);
+			Parliament p = new Parliament(nbMpPerParty,false,size);
 			System.out.println("###### size ="+size);
 			System.out.println("######  size/Util.factorial(nbMpPerParty.size()) "+
 					(0.0+size)/Util.factorial(nbMpPerParty.size()));

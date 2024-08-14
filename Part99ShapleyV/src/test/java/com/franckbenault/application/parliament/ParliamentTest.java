@@ -17,7 +17,7 @@ public class ParliamentTest {
 		nbMpPerParty.put("P2", 4);
 		nbMpPerParty.put("P3", 48);
 		
-		Parliament p = new Parliament(nbMpPerParty);
+		Parliament p = new Parliament(nbMpPerParty,true,0);
 		  
 		assertEquals(p.calculate("P1"),1.0/3);
 		assertEquals(p.calculate("P2"),1.0/3);
@@ -36,7 +36,7 @@ public class ParliamentTest {
 		nbMpPerParty.put("P5", 6);
 		nbMpPerParty.put("P6", 3);
 		
-		Parliament p = new Parliament(nbMpPerParty);
+		Parliament p = new Parliament(nbMpPerParty,true,0);
 
 
 		double sum=0.0;
@@ -64,7 +64,7 @@ public class ParliamentTest {
 		nbMpPerParty.put("Open VLD",8);
 		nbMpPerParty.put("DeFI",1);
 		
-		Parliament p = new Parliament(nbMpPerParty);
+		Parliament p = new Parliament(nbMpPerParty,true,0);
 		double sum =0.0;
 		for(String party : nbMpPerParty.keySet()) {		
 			System.out.println("party "+party+" "+p.calculate(party));
@@ -100,7 +100,7 @@ public class ParliamentTest {
 		//nbMpPerParty.put("petit8",8);	
 		//nbMpPerParty.put("petit9",9);	//set site 19 it becomes slow
 		
-		Parliament p = new Parliament(nbMpPerParty);
+		Parliament p = new Parliament(nbMpPerParty,true,0);
 		double sum =0.0;
 		for(String party : nbMpPerParty.keySet()) {		
 			System.out.println("party "+party+" "+p.calculate(party));
