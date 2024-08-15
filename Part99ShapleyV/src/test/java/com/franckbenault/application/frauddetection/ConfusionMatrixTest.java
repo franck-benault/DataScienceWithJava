@@ -3,8 +3,9 @@ package com.franckbenault.application.frauddetection;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -38,31 +39,33 @@ class ConfusionMatrixTest {
 	
 	@Test
 	public void r1Test() {
-		List<Boolean> transactions = 
-				Arrays.asList(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE,
-						Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE
-						);
-		Set<Integer> detectedFraudulentTs =new HashSet<>(Arrays.asList(1));	
+		Map<String,Boolean> transactions = new HashMap<>();
+		for(int  i=0; i<10 ; i++)
+			transactions.put(String.format("%02d",i),Boolean.FALSE);
+		transactions.put("01",Boolean.TRUE);
+		transactions.put("08",Boolean.TRUE);
+		
+		Set<String> detectedFraudulentTs =new HashSet<>(Arrays.asList("01"));	
 		ConfusionMatrix r1 = new ConfusionMatrix(transactions, detectedFraudulentTs,"r1");		
 		r1.draw();
 		r1.printResult();
 		
-		detectedFraudulentTs =new HashSet<>(Arrays.asList(8));	
+		detectedFraudulentTs =new HashSet<>(Arrays.asList("08"));	
 		ConfusionMatrix r2 = new ConfusionMatrix(transactions, detectedFraudulentTs,"r2");		
 		r2.draw();
 		r2.printResult();
 		
-		detectedFraudulentTs =new HashSet<>(Arrays.asList(0,1,8,9));	
+		detectedFraudulentTs =new HashSet<>(Arrays.asList("00","01","08","09"));	
 		ConfusionMatrix r3 = new ConfusionMatrix(transactions, detectedFraudulentTs,"r3");		
 		r3.draw();
 		r3.printResult();
 
-		detectedFraudulentTs =new HashSet<>(Arrays.asList(7,8,9));	
+		detectedFraudulentTs =new HashSet<>(Arrays.asList("07","08","09"));	
 		ConfusionMatrix r4 = new ConfusionMatrix(transactions, detectedFraudulentTs,"r4");		
 		r4.draw();
 		r4.printResult();
 	
-		detectedFraudulentTs =new HashSet<>(Arrays.asList(0,1,2,3,4,5,6,7,8,9));	
+		detectedFraudulentTs =new HashSet<>(Arrays.asList("00","01","02","03","04","05","06","07","08","09"));	
 		ConfusionMatrix r5 = new ConfusionMatrix(transactions, detectedFraudulentTs,"r5");		
 		r5.draw();
 		r5.printResult();

@@ -1,6 +1,6 @@
 package com.franckbenault.application.frauddetection;
 
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -34,8 +34,8 @@ public class ConfusionMatrix {
 	}
 	
 	public ConfusionMatrix(
-			List<Boolean> transactions,
-			Set<Integer> detectedFraudulentTs,
+			Map<String,Boolean> transactions,
+			Set<String> detectedFraudulentTs,
 			String matrixName
 			) {
 		
@@ -47,16 +47,17 @@ public class ConfusionMatrix {
 		
 		
 		total= transactions.size();
-		for(Integer detectedFraudulentT: detectedFraudulentTs) {
-			if(transactions.get(detectedFraudulentT))
-				nbTruePositive++;
-			else
-				nbFalsePositive++;
+		for(String detectedFraudulentT: detectedFraudulentTs) {
+			if(transactions.get(detectedFraudulentT)!=null)
+				if(transactions.get(detectedFraudulentT))
+					nbTruePositive++;
+				else
+					nbFalsePositive++;
 			
 		}
 		
-		for(int count=0; count<transactions.size() ; count++) {
-			if(transactions.get(count) && !detectedFraudulentTs.contains(count))
+		for(String key: transactions.keySet()) {
+			if(transactions.get(key) && !detectedFraudulentTs.contains(key))
 				nbFalseNegative++;
 
 		}

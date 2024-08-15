@@ -1,7 +1,7 @@
 package com.franckbenault.application.frauddetection;
 
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -21,14 +21,14 @@ public class FraudDetection {
 	
 	private Logger logger = LoggerFactory.getLogger(FraudDetection.class);
 	
-	private List<Boolean> transactions = null;
-	private Map<String, Set<Integer>> fraudDetectionRules = null;
+	private Map<String,Boolean> transactions = null;
+	private Map<String, Set<String>> fraudDetectionRules = null;
 	private ShapleyI shapley =null;
 	private Set<String> rejectedRules;
 
-	public FraudDetection(List<Boolean> transactions,
-			Map<String,Set<Integer>> fraudDetectionRules, boolean exact, int sampleSize) {
-		this.transactions = new ArrayList<>(transactions);
+	public FraudDetection(Map<String,Boolean> transactions,
+			Map<String,Set<String>> fraudDetectionRules, boolean exact, int sampleSize) {
+		this.transactions = new HashMap<>(transactions);
 		this.fraudDetectionRules =new HashMap<>();
 		this.fraudDetectionRules.putAll(fraudDetectionRules);
 		rejectedRules =new HashSet<String>();
@@ -37,9 +37,9 @@ public class FraudDetection {
 		for(String rule: fraudDetectionRules.keySet()) {
 			ConfusionMatrix matrix = 
 					new ConfusionMatrix(this.transactions,fraudDetectionRules.get(rule) ,rule);
-			if(matrix.accuraty()!=0.0 && matrix.precision()!=0.0)
+			if(!Double.isNaN(matrix.f1score())) {
 				n.add(rule);
-			else 
+			} else 
 				rejectedRules.add(rule);
 		}
 		if(exact) 
@@ -51,7 +51,7 @@ public class FraudDetection {
 	
 	private Function<Set<String>, Double> getF1Score = rules ->  {
 		
-		Set<Integer> detectedFraudulentTs =new HashSet<>();
+		Set<String> detectedFraudulentTs =new HashSet<>();
 		if(rules.size()==0)
 			return 0.0;
 		
@@ -66,6 +66,17 @@ public class FraudDetection {
 	
 	public double calculate(String rule) {
 		return shapley.getShapleyValue(rule);
+	}
+	
+	public List<String> getAllSortedRules() {
+		Map<String, Double> sorted = shapley.getAllSortedValue();
+		logger.info("Rejected rules {}",rejectedRules);
+		List<String> firstRules = new ArrayList<>();
+		for(String rule : sorted.keySet()) {
+			firstRules.add(rule);
+		}
+		return firstRules;
+
 	}
 	
 	public void showAllSortedRules() {
