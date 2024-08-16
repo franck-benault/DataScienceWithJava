@@ -15,7 +15,7 @@ class FraudDetectionTest {
 	
 	private Logger logger = LoggerFactory.getLogger(FraudDetectionTest.class);
 	
-	private Map<String,Boolean> getShortTransactionSample() {
+	private Map<String,Boolean> getSmallTransactionSample() {
 		Map<String,Boolean> transactions = new HashMap<>();
 		for(int  i=0; i<10 ; i++)
 			transactions.put(String.format("%02d",i),Boolean.FALSE);
@@ -26,9 +26,9 @@ class FraudDetectionTest {
 	}
 
 	@Test
-	public void test() {
+	public void smallSetOfTransactionFewRulesTest() {
 
-		Map<String,Boolean> transactions = getShortTransactionSample();
+		Map<String,Boolean> transactions = getSmallTransactionSample();
 		
 		Map<String,Set<String>> fraudDetectionRules =new HashMap<>();
 		
@@ -45,9 +45,9 @@ class FraudDetectionTest {
 	}
 	
 	@Test
-	public void test2() {
+	public void smallSetOfTransactionMoreRulesTest2(){
 
-		Map<String,Boolean> transactions = getShortTransactionSample();
+		Map<String,Boolean> transactions = getSmallTransactionSample();
 		
 		Map<String,Set<String>> fraudDetectionRules =new HashMap<>();
 		
@@ -56,10 +56,10 @@ class FraudDetectionTest {
 		fraudDetectionRules.put("r3",new HashSet<String>(Arrays.asList("00","01","08","09")));
 		fraudDetectionRules.put("r4",new HashSet<String>(Arrays.asList("07","08","09")));
 		fraudDetectionRules.put("r5",new HashSet<String>(Arrays.asList("00","01","02","03","04","05","06","07","08","09")));
-		fraudDetectionRules.put("r6",new HashSet<String>(Arrays.asList("02","03","07","08","09")));
+		fraudDetectionRules.put("r6",new HashSet<String>(Arrays.asList("02","03","06","07","08","09")));
 		fraudDetectionRules.put("r7",new HashSet<String>(Arrays.asList("00","01","02","03","04","05","06","07")));
 		fraudDetectionRules.put("r8",new HashSet<String>(Arrays.asList("03","07","08","09")));
-		fraudDetectionRules.put("r9",new HashSet<String>(Arrays.asList("01","02","03","07","08","09")));
+		fraudDetectionRules.put("r9",new HashSet<String>(Arrays.asList("01","02","03","08","09")));
 		
 		FraudDetection f = new FraudDetection(transactions, fraudDetectionRules,true,0);	
 		f.showAllSortedRules();
@@ -79,7 +79,7 @@ class FraudDetectionTest {
 	}
 	
 	@Test
-	public void test3() {
+	public void bigSetOfTransactionHardCodedRulesTest3() {
 
 		Map<String,Boolean> transactions =  getBigTransactionSample();
 		
@@ -105,14 +105,19 @@ class FraudDetectionTest {
 		FraudDetection f = new FraudDetection(transactions, fraudDetectionRules,true,0);	
 		f.showAllSortedRules();
 		f.showScoreFirstRules();
-		System.out.println("----------");
+		logger.info("----------");
 			
 		f = new FraudDetection(transactions, fraudDetectionRules,false,1_000);	
 		f.showAllSortedRules();
-		System.out.println("----------");
+		logger.info("----------");
 		
 		f = new FraudDetection(transactions, fraudDetectionRules,false,10_000);	
 		f.showAllSortedRules();
+		logger.info("----------");
+		
+		f = new FraudDetection(transactions, fraudDetectionRules,false,20_000);	
+		f.showAllSortedRules();
+		logger.info("----------");
 
 
 	}
@@ -132,13 +137,13 @@ class FraudDetectionTest {
 	
 	
 	@Test
-	public void test4() {
+	public void bigSetOfTransactionRandomRulesTest4() {
 
 		Map<String,Boolean> transactions =  getBigTransactionSample();
 		
 		Map<String,Set<String>> fraudDetectionRules =new HashMap<>();
 		
-		for(int i=1; i<100; i++)
+		for(int i=1; i<=100; i++)
 			fraudDetectionRules.put(String.format("R%03d", i), getRandomRule());
 		
 		FraudDetection f = new FraudDetection(transactions, fraudDetectionRules,false,50_000);	

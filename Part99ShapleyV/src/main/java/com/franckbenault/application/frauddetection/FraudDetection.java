@@ -49,14 +49,19 @@ public class FraudDetection {
 	    shapley.calculateAllShapleyValues();
 	}
 	
-	private Function<Set<String>, Double> getF1Score = rules ->  {
-		
+	private Set<String> detectedFraudulentTs(Set<String> rules) {
 		Set<String> detectedFraudulentTs =new HashSet<>();
+		for(String rule : rules)
+			detectedFraudulentTs.addAll(fraudDetectionRules.get(rule));
+		return detectedFraudulentTs;
+	}
+	
+	private Function<Set<String>, Double> getF1Score = rules ->  {
+
 		if(rules.size()==0)
 			return 0.0;
 		
-		for(String rule : rules)
-			detectedFraudulentTs.addAll(fraudDetectionRules.get(rule));
+		Set<String> detectedFraudulentTs =detectedFraudulentTs(rules) ;
 		logger.debug("rule(s) "+rules+" "+detectedFraudulentTs);
 		ConfusionMatrix matrix = new ConfusionMatrix(this.transactions, detectedFraudulentTs,rules.toString());
 		//matrix.draw();
@@ -92,7 +97,10 @@ public class FraudDetection {
 		Set<String> firstRules = new HashSet<>();
 		for(String rule : sorted.keySet()) {
 			firstRules.add(rule);
-			logger.info("score {} rules {}",String.format("%,.3f",getF1Score.apply(firstRules)),firstRules);
+			logger.info("score {} transactions {} rules {}",
+					String.format("%,.3f",getF1Score.apply(firstRules)),
+					detectedFraudulentTs(firstRules), 
+					firstRules);
 		}
 			
 	}
